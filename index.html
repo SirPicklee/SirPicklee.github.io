@@ -165,6 +165,21 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 .page.art .langs{background:rgba(8,6,4,.62);padding:4px 16px 12px;margin-top:24px}
 .page.art .txt{padding-bottom:40px}}
 
+/* skills content */
+.page.grav .art-img{position:fixed}
+.page.grav::after{position:fixed}
+.page.grav .txt{max-width:700px}
+.sgroup{margin-top:30px}
+.sgroup h3{margin:0 0 12px}
+.sgroup ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.sgroup li{font-family:var(--mono);font-size:13px;line-height:1.2;padding:7px 12px;border:1px solid rgba(243,233,210,.24);background:rgba(11,9,7,.45);backdrop-filter:blur(3px);transition:color .2s,border-color .2s,transform .25s}
+.sgroup li:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
+.page.grav.open .sgroup{animation:up .8s cubic-bezier(.2,.7,.2,1) both}
+.page.grav.open .sgroup:nth-of-type(2){animation-delay:3.1s}.page.grav.open .sgroup:nth-of-type(3){animation-delay:3.22s}.page.grav.open .sgroup:nth-of-type(4){animation-delay:3.34s}.page.grav.open .sgroup:nth-of-type(5){animation-delay:3.46s}.page.grav.open .sgroup:nth-of-type(6){animation-delay:3.58s}.page.grav.open .sgroup:nth-of-type(7){animation-delay:3.7s}.page.grav.open .sgroup:nth-of-type(8){animation-delay:3.82s}
+@media(max-aspect-ratio:1/1){
+.page.grav .art-img{opacity:.3}
+.page.grav .txt{position:relative;left:auto;right:auto;bottom:auto;padding:90px 24px 40px;background:none}}
+
 /* page transition: five strips sweep up, then away */
 .curtain{position:fixed;inset:0;z-index:10;display:flex;pointer-events:none}
 .curtain i{flex:1;background:#0b0907;border-top:2px solid var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform .55s cubic-bezier(.7,0,.2,1);transition-delay:calc(var(--i)*70ms)}
@@ -232,7 +247,15 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 </section>
 <section class="page grav" id="skills">
   <img class="art-img" src="stanczyk.webp" alt="Stanczyk, oil painting by Jan Matejko, 1862" width="2200" height="1635">
-  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Skills</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
+  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Skills</h2><div class="rule"></div>
+<div class="sgroup"><h3>Engineering</h3><ul><li>Thermal Engineering</li><li>Turbine Engineering</li><li>Heat Transfer</li><li>Thermodynamics</li><li>Nuclear Engineering</li><li>Mechanical Systems</li><li>CFD Analysis</li><li>Two-Phase Flow</li><li>Conjugate Heat Transfer</li></ul></div>
+<div class="sgroup"><h3>CAD and Design</h3><ul><li>Siemens NX</li><li>SolidWorks</li><li>CATIA</li><li>AutoCAD (3D Modeling)</li><li>Blender</li><li>Rhino3D (7-8)</li><li>CADDS 5</li><li>MotionSolve</li></ul></div>
+<div class="sgroup"><h3>Simulation and Analysis</h3><ul><li>ANSYS Fluent</li><li>ANSYS Mechanical</li><li>Abaqus</li><li>COMSOL Multiphysics</li><li>Siemens STAR-CCM+</li><li>MATLAB</li><li>Simulink</li><li>OpenRocket</li><li>Lattice Boltzmann Method (LBM)</li><li>LES Turbulence Modeling</li><li>Method of Characteristics</li><li>Vortex Lattice Method (VLM)</li><li>Joukowski Transform</li><li>k-epsilon Turbulence</li></ul></div>
+<div class="sgroup"><h3>Programming</h3><ul><li>Python</li><li>C++</li><li>JavaScript</li><li>TypeScript</li><li>HTML/CSS</li><li>React</li><li>Node.js</li><li>VBA</li></ul></div>
+<div class="sgroup"><h3>3D and Visualization</h3><ul><li>Three.js</li><li>OpenGL</li><li>Recharts</li><li>Blender</li><li>Rhino3D</li></ul></div>
+<div class="sgroup"><h3>Electronics and OS</h3><ul><li>EasyEDA</li><li>Ubuntu</li></ul></div>
+<div class="sgroup"><h3>Office Tools</h3><ul><li>MS Office (Advanced)</li><li>MS Excel VBA Automation</li></ul></div>
+</div>
 </section>
 <section class="page fog" id="projects">
   <div class="frame"><img src="wanderer.webp" alt="Wanderer above the Sea of Fog, oil painting by Caspar David Friedrich, c. 1818" width="2012" height="2576"></div>
