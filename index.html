@@ -37,6 +37,7 @@ nav a:hover{color:var(--gold)}
 
 .shade{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(90deg,rgba(8,6,4,.88),rgba(8,6,4,.45) 38%,rgba(8,6,4,0) 62%),
+  linear-gradient(270deg,rgba(8,6,4,.6),rgba(8,6,4,0) 40%),
   radial-gradient(ellipse at 60% 50%,transparent 45%,rgba(0,0,0,.6))}
 #dust{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
 
@@ -51,7 +52,49 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 @keyframes rise{to{opacity:1;transform:none}}
 .credit{position:absolute;z-index:4;right:22px;bottom:16px;font-family:var(--mono);font-size:11px;color:var(--paper);opacity:.55;text-align:right}
 
-@media(max-width:700px){.shade{background:linear-gradient(0deg,rgba(8,6,4,.9),rgba(8,6,4,.2) 55%,transparent)}.credit{display:none}}
+/* home menu */
+.menu{position:absolute;z-index:4;right:clamp(24px,6vw,90px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.menu a{position:relative;font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3.2vw,2.8rem);line-height:1.2;color:var(--paper);text-decoration:none;text-shadow:0 2px 24px rgba(0,0,0,.7);transition:color .25s,transform .35s cubic-bezier(.2,.7,.2,1);animation:menuin .8s cubic-bezier(.2,.7,.2,1) backwards}
+.menu a:nth-child(1){animation-delay:2.3s}.menu a:nth-child(2){animation-delay:2.4s}.menu a:nth-child(3){animation-delay:2.5s}.menu a:nth-child(4){animation-delay:2.6s}.menu a:nth-child(5){animation-delay:2.7s}
+@keyframes menuin{from{opacity:0;transform:translateY(14px)}}
+.menu a::before{content:'';position:absolute;right:calc(100% + 14px);top:50%;width:0;height:2px;background:var(--gold);transition:width .35s}
+.menu a:hover,.menu a:focus-visible{color:var(--gold);transform:translateX(-8px);outline:none}
+.menu a:hover::before,.menu a:focus-visible::before{width:36px}
+
+/* section pages */
+.page{position:fixed;inset:0;z-index:4;overflow-y:auto;visibility:hidden;padding:110px clamp(24px,6vw,90px) 60px;background:radial-gradient(ellipse at 20% 0%,#1d1610,#0b0907 60%)}
+.page.open{visibility:visible}
+.page .back{font-family:var(--mono);font-size:13px;color:var(--gold);text-decoration:none}
+.page h2{margin-top:28px;font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,9vw,7rem);letter-spacing:-.02em;line-height:1}
+.page .rule{width:72px;height:2px;background:var(--gold);margin:24px 0}
+.page .soon{font-family:var(--mono);opacity:.6}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}
+.page.open h2,.page.open .rule,.page.open .soon{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.page.open h2{animation-delay:.5s}.page.open .rule{animation-delay:.65s}.page.open .soon{animation-delay:.8s}
+
+/* About: dive into the dark wall, then pull back from the Bocklin painting */
+#hero.dive{transform:scale(9);transition:transform 1.5s cubic-bezier(.55,0,.85,.35)}
+.veil{position:fixed;inset:0;z-index:9;background:#000;opacity:0;pointer-events:none}
+.page.art{background:#000;padding:0}
+.page.art .art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:72% center;transform-origin:63% 46%}
+.page.art.open .art-img{animation:pull 2.8s cubic-bezier(.15,.6,.2,1) both}
+@keyframes pull{from{opacity:0;transform:scale(2.6)}30%{opacity:1}to{opacity:1;transform:none}}
+.page.art .txt{position:relative;z-index:1;padding:110px clamp(24px,6vw,90px) 60px}
+.page.art.open h2{animation-delay:2s}.page.art.open .rule{animation-delay:2.15s}.page.art.open .soon{animation-delay:2.3s}
+@media(max-aspect-ratio:9/16){.page.art .art-img{object-position:center;transform-origin:45% 46%}}
+
+/* page transition: five strips sweep up, then away */
+.curtain{position:fixed;inset:0;z-index:10;display:flex;pointer-events:none}
+.curtain i{flex:1;background:#0b0907;border-top:2px solid var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform .55s cubic-bezier(.7,0,.2,1);transition-delay:calc(var(--i)*70ms)}
+.curtain.in i{transform:scaleY(1)}
+.curtain.out i{transform-origin:top}
+.curtain.in,.curtain.out{pointer-events:all}
+
+@media(max-width:700px){
+.shade{background:linear-gradient(180deg,rgba(8,6,4,.75),transparent 42%),linear-gradient(0deg,rgba(8,6,4,.9),rgba(8,6,4,.2) 55%,transparent)}
+.credit{display:none}
+.menu{top:70px;left:24px;right:auto;transform:none;align-items:flex-start}
+.menu a{font-size:1.4rem}.menu a::before{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important}.copy>*{opacity:1;transform:none}}
 </style>
 </head>
@@ -85,8 +128,27 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
       <li>Analytical Engineering</li>
     </ul>
   </div>
+  <div class="menu" role="navigation" aria-label="Sections">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certs">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
   <p class="credit">The Death of Socrates<br>Jacques-Louis David, 1787</p>
 </section>
+
+<section class="page art" id="about">
+  <img class="art-img" src="bocklin.webp" alt="Self-Portrait with Death Playing the Fiddle, oil painting by Arnold Bocklin" width="1440" height="2560">
+  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>About</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
+</section>
+<section class="page" id="skills"><a class="back" href="#">&larr; Back</a><h2>Skills</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
+<section class="page" id="projects"><a class="back" href="#">&larr; Back</a><h2>Projects</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
+<section class="page" id="certs"><a class="back" href="#">&larr; Back</a><h2>Certifications</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
+<section class="page" id="contact"><a class="back" href="#">&larr; Back</a><h2>Contact</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
+
+<div class="veil" id="veil"></div>
+<div class="curtain" id="curtain" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i></div>
 
 <script>
 (function(){
@@ -142,6 +204,67 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
     requestAnimationFrame(loop);
   }
   if(reduce) draw(); else loop();
+})();
+</script>
+<script>
+(function(){
+  var names = ['about','skills','projects','certs','contact'];
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var curtain = document.getElementById('curtain'), current = '', busy = false;
+
+  function valid(h){ return names.indexOf(h) > -1 ? h : ''; }
+  function show(name){
+    names.forEach(function(n){ document.getElementById(n).classList.toggle('open', n === name); });
+    document.querySelectorAll('.page').forEach(function(p){ p.scrollTop = 0; });
+    current = name;
+  }
+  var heroEl = document.getElementById('hero'), veil = document.getElementById('veil');
+  function done(){
+    busy = false;
+    var h = valid(location.hash.slice(1));
+    if(h !== current) go(h);
+  }
+  /* About: the camera dives into the dark wall of the Socrates painting, then pulls back from the new one */
+  function toAbout(){
+    busy = true;
+    heroEl.style.transformOrigin = '36% 10%';
+    heroEl.classList.add('dive');
+    veil.style.transition = 'opacity .8s ease-in .7s';
+    veil.style.opacity = 1;
+    setTimeout(function(){
+      show('about');
+      heroEl.classList.remove('dive');
+      veil.style.transition = 'opacity 1.4s ease .3s';
+      veil.style.opacity = 0;
+      setTimeout(done, 3000);
+    }, 1600);
+  }
+  function fadeTo(name){
+    busy = true;
+    veil.style.transition = 'opacity .6s ease';
+    veil.style.opacity = 1;
+    setTimeout(function(){
+      show(name);
+      veil.style.opacity = 0;
+      setTimeout(done, 700);
+    }, 650);
+  }
+  function go(name, instant){
+    if(name === current || busy) return;
+    if(instant || reduce){ show(name); return; }
+    if(name === 'about' && current === ''){ toAbout(); return; }
+    if(current === 'about'){ fadeTo(name); return; }
+    busy = true;
+    curtain.classList.add('in');
+    setTimeout(function(){
+      show(name);
+      curtain.classList.remove('in'); curtain.classList.add('out');
+      setTimeout(function(){ curtain.classList.remove('out'); busy = false;
+        if(valid(location.hash.slice(1)) !== current) go(valid(location.hash.slice(1))); }, 900);
+    }, 900);
+  }
+  addEventListener('hashchange', function(){ go(valid(location.hash.slice(1))); });
+  go(valid(location.hash.slice(1)), true);
 })();
 </script>
 </body>
