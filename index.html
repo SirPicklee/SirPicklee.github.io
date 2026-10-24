@@ -83,18 +83,20 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 .page.art.open h2{animation-delay:2s}.page.art.open .rule{animation-delay:2.15s}.page.art.open .soon{animation-delay:2.3s}
 @media(max-aspect-ratio:9/16){.page.art .art-img{object-position:center;transform-origin:45% 46%}}
 
-/* Skills: the home screen trembles, then falls away and reveals Newton */
+/* Skills: zoom into the red figure, melt through red, pull back from the red light of Stanczyk */
 .page.grav{background:#0b0907;padding:0}
-.page.behind{z-index:3}
-.page.grav .art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:80% center;transform-origin:80% 30%;animation:drift 40s ease-in-out infinite alternate}
-@keyframes drift{from{transform:scale(1)}to{transform:scale(1.07)}}
-.page.grav.open h2{animation-delay:1.6s}.page.grav.open .rule{animation-delay:1.75s}.page.grav.open .soon{animation-delay:1.9s}
-#hero.shake{z-index:4;animation:shake .6s linear}
-@keyframes shake{0%,100%{transform:none}10%{transform:translate(-3px,2px) rotate(-.2deg)}20%{transform:translate(4px,-2px) rotate(.25deg)}30%{transform:translate(-4px,3px)}40%{transform:translate(3px,-3px) rotate(-.2deg)}50%{transform:translate(-3px,1px)}60%{transform:translate(4px,2px) rotate(.2deg)}70%{transform:translate(-2px,-2px)}80%{transform:translate(2px,2px)}90%{transform:translate(-1px,0)}}
-#hero.fall{z-index:4;transform:translateY(112vh) rotate(2.5deg);transform-origin:20% 100%;transition:transform 1.1s cubic-bezier(.55,0,1,.45)}
+.page.grav .art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;transform-origin:90% 22%}
+.page.grav.open .art-img{animation:stpull 3.4s cubic-bezier(.2,.65,.2,1) both,drift 40s ease-in-out 3.4s infinite alternate}
+@keyframes stpull{from{transform:scale(4.2);filter:brightness(1.5) saturate(1.3)}to{transform:none;filter:none}}
+@keyframes drift{from{transform:scale(1)}to{transform:scale(1.06)}}
+.page.grav::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(11,9,7,.88),rgba(11,9,7,.45) 38%,transparent 62%),linear-gradient(0deg,rgba(11,9,7,.5),transparent 30%)}
+.page.grav .txt{z-index:2}
+.page.grav.open h2{animation-delay:2.4s}.page.grav.open .rule{animation-delay:2.55s}.page.grav.open .soon{animation-delay:2.7s}
+#hero.zoomred{transition:transform 2s cubic-bezier(.55,0,.85,.45);transform:scale(6.5)}
 @media(max-aspect-ratio:1/1){
-.page.grav .art-img{object-position:85% center}
-.page.grav .txt{position:absolute;left:0;right:0;bottom:0;padding:90px 24px 40px;background:linear-gradient(0deg,#0b0907 35%,transparent)}}
+.page.grav .art-img{object-position:47% center}
+.page.grav::after{background:linear-gradient(180deg,rgba(11,9,7,.75),transparent 35%),linear-gradient(0deg,rgba(11,9,7,.92) 20%,transparent 60%)}
+.page.grav .txt{position:absolute;left:0;right:0;bottom:0;padding:90px 24px 40px}}
 
 /* page transition: five strips sweep up, then away */
 .curtain{position:fixed;inset:0;z-index:10;display:flex;pointer-events:none}
@@ -156,7 +158,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
   <div class="txt"><a class="back" href="#">&larr; Back</a><h2>About</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
 </section>
 <section class="page grav" id="skills">
-  <img class="art-img" src="newton.webp" alt="Portrait of Isaac Newton, oil painting after Godfrey Kneller" width="1920" height="1104">
+  <img class="art-img" src="stanczyk.webp" alt="Stanczyk, oil painting by Jan Matejko, 1862" width="2200" height="1635">
   <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Skills</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
 </section>
 <section class="page" id="projects"><a class="back" href="#">&larr; Back</a><h2>Projects</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
@@ -245,6 +247,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
     busy = true;
     heroEl.style.transformOrigin = '36% 10%';
     heroEl.classList.add('dive');
+    veil.style.background = '#000';
     veil.style.transition = 'opacity .8s ease-in .7s';
     veil.style.opacity = 1;
     setTimeout(function(){
@@ -255,27 +258,27 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
       setTimeout(done, 3000);
     }, 1600);
   }
-  /* Skills: gravity. The home screen shakes, lets go and falls, and the page underneath is revealed */
+  /* Skills: the camera dives into the red figure, melts through red, and pulls back from the red light of the new painting */
   function toSkills(){
     busy = true;
-    var pg = document.getElementById('skills'), root = document.documentElement;
-    root.style.overflow = 'hidden';
-    pg.classList.add('behind');
-    heroEl.classList.add('shake');
-    show('skills');
+    var st = document.querySelector('.stage').getBoundingClientRect();
+    var ox = (st.left + st.width*.335)/innerWidth*100, oy = (st.top + st.height*.5)/innerHeight*100;
+    heroEl.style.transformOrigin = ox.toFixed(1)+'% '+oy.toFixed(1)+'%';
+    heroEl.classList.add('zoomred');
+    veil.style.background = '#4a0e08';
+    veil.style.transition = 'opacity .9s ease-in 1.1s';
+    veil.style.opacity = 1;
     setTimeout(function(){
-      heroEl.classList.remove('shake');
-      heroEl.classList.add('fall');
-    }, 600);
-    setTimeout(function(){
-      pg.classList.remove('behind');
-      heroEl.classList.remove('fall');
-      root.style.overflow = '';
-      done();
-    }, 1800);
+      show('skills');
+      heroEl.classList.remove('zoomred');
+      veil.style.transition = 'opacity 1.3s ease .15s';
+      veil.style.opacity = 0;
+      setTimeout(done, 3400);
+    }, 2150);
   }
   function fadeTo(name){
     busy = true;
+    veil.style.background = '#000';
     veil.style.transition = 'opacity .6s ease';
     veil.style.opacity = 1;
     setTimeout(function(){
