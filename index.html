@@ -76,7 +76,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 #hero.dive{transform:scale(9);transition:transform 1.5s cubic-bezier(.55,0,.85,.35)}
 .veil{position:fixed;inset:0;z-index:9;background:#000;opacity:0;pointer-events:none}
 .page.art{background:#000;padding:0}
-.page.art .art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:72% center;transform-origin:63% 46%}
+.page.art .art-img{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;object-position:72% center;transform-origin:63% 46%}
 .page.art.open .art-img{animation:pull 2.8s cubic-bezier(.15,.6,.2,1) both}
 @keyframes pull{from{opacity:0;transform:scale(2.6)}30%{opacity:1}to{opacity:1;transform:none}}
 .page.art .txt,.page.grav .txt,.page.fog .txt,.page.lib .txt{position:relative;z-index:1;padding:110px clamp(24px,6vw,90px) 60px}
@@ -117,7 +117,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 
 /* Certifications: dive into the scrolls, then climb the library ladder to the reader and pull back */
 .page.lib{background:radial-gradient(ellipse at 80% 40%,#2a1a0d,#0b0907 70%);padding:0}
-.page.lib .frame{position:absolute;top:0;bottom:0;right:clamp(0px,6vw,110px);aspect-ratio:549/1000;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 24%);mask-image:linear-gradient(90deg,transparent,#000 24%)}
+.page.lib .frame{position:fixed;top:0;bottom:0;right:clamp(0px,6vw,110px);aspect-ratio:549/1000;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 24%);mask-image:linear-gradient(90deg,transparent,#000 24%)}
 .page.lib .frame img{position:absolute;inset:0;width:100%;height:100%;display:block}
 .page.lib.open .frame img{animation:climb 5.6s both,libdrift 40s ease-in-out 5.6s infinite alternate}
 @keyframes climb{
@@ -139,6 +139,31 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 .clinks a:hover,.clinks a:focus-visible{color:var(--gold);padding-left:14px;outline:none}
 .page.open .clinks li{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
 .page.open .clinks li:nth-child(1){animation-delay:.85s}.page.open .clinks li:nth-child(2){animation-delay:.95s}.page.open .clinks li:nth-child(3){animation-delay:1.05s}.page.open .clinks li:nth-child(4){animation-delay:1.15s}
+
+/* languages and certifications content */
+.page h3{font-family:var(--display);font-weight:800;font-size:clamp(1.15rem,2vw,1.4rem);letter-spacing:-.01em;margin:40px 0 14px}
+.page.art .txt,.page.lib .txt{max-width:640px}
+.langs ul{list-style:none;max-width:460px}
+.langs li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:4px 16px;padding:14px 0;border-top:1px solid rgba(243,233,210,.16)}
+.langs li:last-child{border-bottom:1px solid rgba(243,233,210,.16)}
+.langs .n{font-size:1.1rem}.langs .l{font-family:var(--mono);font-size:13px;color:var(--gold)}
+.langs i{grid-column:1/-1;display:block;height:2px;background:rgba(243,233,210,.14);position:relative;overflow:hidden}
+.langs i::after{content:'';position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--gold);transform-origin:left;transform:scaleX(0)}
+.page.open .langs i::after{animation:grow 1.2s cubic-bezier(.2,.7,.2,1) 3.1s forwards}
+@keyframes grow{to{transform:scaleX(1)}}
+.page.art.open .langs{animation:up .9s cubic-bezier(.2,.7,.2,1) 2.5s both}
+.cgroup{margin-top:34px}
+.cgroup h3{margin:0 0 6px}
+.cgroup ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0 28px}
+.cgroup li{padding:10px 0;border-bottom:1px solid rgba(243,233,210,.12);font-size:.95rem;line-height:1.35}
+.cgroup li span{display:block;font-size:.8rem;opacity:.55;margin-top:2px}
+.page.lib.open .cgroup{animation:up .8s cubic-bezier(.2,.7,.2,1) both}
+.page.lib.open .cgroup:nth-of-type(2){animation-delay:4.9s}.page.lib.open .cgroup:nth-of-type(3){animation-delay:5.05s}.page.lib.open .cgroup:nth-of-type(4){animation-delay:5.2s}.page.lib.open .cgroup:nth-of-type(5){animation-delay:5.35s}.page.lib.open .cgroup:nth-of-type(6){animation-delay:5.5s}.page.lib.open .cgroup:nth-of-type(7){animation-delay:5.65s}.page.lib.open .cgroup:nth-of-type(8){animation-delay:5.8s}
+@media(max-aspect-ratio:1/1){
+.page.lib .frame{opacity:.28}
+.page.lib .txt{position:relative;padding-top:90px;background:none}
+.page.art .langs{background:rgba(8,6,4,.62);padding:4px 16px 12px;margin-top:24px}
+.page.art .txt{padding-bottom:40px}}
 
 /* page transition: five strips sweep up, then away */
 .curtain{position:fixed;inset:0;z-index:10;display:flex;pointer-events:none}
@@ -197,7 +222,13 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 
 <section class="page art" id="about">
   <img class="art-img" src="bocklin.webp" alt="Self-Portrait with Death Playing the Fiddle, oil painting by Arnold Bocklin" width="1440" height="2560">
-  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>About</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
+  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>About</h2><div class="rule"></div>
+    <div class="langs"><h3>Languages</h3><ul>
+      <li><span class="n">English</span><span class="l">C1, professional</span><i style="--w:85%"></i></li>
+      <li><span class="n">Turkish</span><span class="l">Native</span><i style="--w:100%"></i></li>
+      <li><span class="n">Russian</span><span class="l">B1, intermediate</span><i style="--w:55%"></i></li>
+      <li><span class="n">Mandarin Chinese</span><span class="l">A2, HSK1 to HSK4</span><i style="--w:25%"></i></li>
+    </ul></div></div>
 </section>
 <section class="page grav" id="skills">
   <img class="art-img" src="stanczyk.webp" alt="Stanczyk, oil painting by Jan Matejko, 1862" width="2200" height="1635">
@@ -209,7 +240,50 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 </section>
 <section class="page lib" id="certs">
   <div class="frame"><img src="bookworm.webp" alt="The Bookworm, oil painting by Carl Spitzweg, c. 1850" width="549" height="1000"></div>
-  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Certifications</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
+  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Certifications</h2><div class="rule"></div>
+<div class="cgroup"><h3>Engineering and Technical</h3><ul>
+<li>Thermodynamics &amp; Energy<span>Harvard School of Engineering, Philip S. Weld</span></li>
+<li>Fundamentals of Rocket Propulsion<span>Prof. Dr. Goteti Satyanarayana</span></li>
+<li>CFD Analysis Engineer Training Program<span>Engineering Academy</span></li>
+<li>Design of Piping Systems: Steam &amp; Condensate<span>Dr. Alexandre Malherbe</span></li>
+<li>Steam &amp; Condensate Systems: Design, Sizing, Operation and Optimization<span>WR Training Design</span></li>
+<li>Combined Cycle Energy Production<span>EUAS</span></li>
+<li>Thermal Power Indicators Training<span>EUAS</span></li>
+<li>Advanced Quantum Field Theory Intuition with Path Integrals<span>Emanuele Pesaresi</span></li>
+<li>A Boot Camp to Nuclear Physics<span>Shamykant Anwae</span></li>
+</ul></div>
+<div class="cgroup"><h3>ANSYS Innovation Courses</h3><ul>
+<li>Intro to Ansys Fluent</li>
+<li>Intro to Heat Transfer in Fluids</li>
+<li>What Are Fluids?</li>
+<li>Governing Equations of Fluids</li>
+<li>Aerodynamics of a Solar Car</li>
+<li>Unsteady Flow Past a Cylinder</li>
+<li>3D Steady Diffusion</li>
+<li>Getting Started with Ansys Mechanical</li>
+<li>Stress Analysis in Solid Mechanics</li>
+<li>Intro to Heat Transfer in Mechanical Structures</li>
+</ul></div>
+<div class="cgroup"><h3>NASA and Science</h3><ul>
+<li>Open Science 101<span>NASA Science Mission Directorate</span></li>
+<li>Open Science Essentials<span>NASA Science Mission Directorate</span></li>
+</ul></div>
+<div class="cgroup"><h3>Programming and Software</h3><ul>
+<li>MATLAB Onramp Certification<span>MathWorks Inc.</span></li>
+<li>C++ &amp; Python Programming<span>Sinop University</span></li>
+</ul></div>
+<div class="cgroup"><h3>Aviation and Licensing</h3><ul>
+<li>IHA-1 Unmanned Aerial Vehicle Operator License<span>T.C. Directorate General of Civil Aviation</span></li>
+</ul></div>
+<div class="cgroup"><h3>Languages</h3><ul>
+<li>Learn Chinese Language (HSK1 to HSK4)<span>Lei Chen</span></li>
+<li>Mandarin Chinese HSK1 to HSK3<span>Yuanli Xiao</span></li>
+</ul></div>
+<div class="cgroup"><h3>Other</h3><ul>
+<li>Short Range Radio Operator Certificate<span>T.C. Ministry of Transport and Infrastructure</span></li>
+<li>Amateur Mariner Certificate<span>T.C. Ministry of Transport and Infrastructure</span></li>
+</ul></div>
+</div>
 </section>
 <section class="page" id="contact"><a class="back" href="#">&larr; Back</a><h2>Contact</h2><div class="rule"></div>
   <ul class="clinks">
