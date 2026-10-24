@@ -79,7 +79,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 .page.art .art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:72% center;transform-origin:63% 46%}
 .page.art.open .art-img{animation:pull 2.8s cubic-bezier(.15,.6,.2,1) both}
 @keyframes pull{from{opacity:0;transform:scale(2.6)}30%{opacity:1}to{opacity:1;transform:none}}
-.page.art .txt,.page.grav .txt{position:relative;z-index:1;padding:110px clamp(24px,6vw,90px) 60px}
+.page.art .txt,.page.grav .txt,.page.fog .txt{position:relative;z-index:1;padding:110px clamp(24px,6vw,90px) 60px}
 .page.art.open h2{animation-delay:2s}.page.art.open .rule{animation-delay:2.15s}.page.art.open .soon{animation-delay:2.3s}
 @media(max-aspect-ratio:9/16){.page.art .art-img{object-position:center;transform-origin:45% 46%}}
 
@@ -97,6 +97,23 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 .page.grav .art-img{object-position:47% center}
 .page.grav::after{background:linear-gradient(180deg,rgba(11,9,7,.75),transparent 35%),linear-gradient(0deg,rgba(11,9,7,.92) 20%,transparent 60%)}
 .page.grav .txt{position:absolute;left:0;right:0;bottom:0;padding:90px 24px 40px}}
+
+/* Projects: dive into the white cloak, then drift over the fog toward the mountain and pull back to the wanderer */
+.page.fog{background:radial-gradient(ellipse at 80% 40%,#1a1f26,#0b0907 70%);padding:0}
+.page.fog .frame{position:absolute;top:0;bottom:0;right:0;aspect-ratio:2012/2576;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 24%);mask-image:linear-gradient(90deg,transparent,#000 24%)}
+.page.fog .frame img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.page.fog.open .frame img{animation:glide 5.6s both,fogdrift 40s ease-in-out 5.6s infinite alternate}
+@keyframes glide{
+0%{transform:translate(-21%,-25%) scale(2.1);filter:brightness(1.3);animation-timing-function:cubic-bezier(.45,.1,.55,.9)}
+52%{transform:translate(55%,41%) scale(2.4);filter:brightness(1.15);animation-timing-function:cubic-bezier(.4,0,.2,1)}
+100%{transform:none;filter:none}}
+@keyframes fogdrift{from{transform:scale(1)}to{transform:scale(1.05)}}
+.page.fog.open h2{animation-delay:4.4s}.page.fog.open .rule{animation-delay:4.55s}.page.fog.open .soon{animation-delay:4.7s}
+#hero.zoomcloak{transition:transform 2s cubic-bezier(.55,0,.85,.45);transform:scale(6.5)}
+@media(max-aspect-ratio:1/1){
+.page.fog .frame{left:0;right:0;aspect-ratio:auto;-webkit-mask-image:none;mask-image:none}
+.page.fog .frame img{object-fit:cover;object-position:53% center}
+.page.fog .txt{position:absolute;left:0;right:0;top:0;padding:90px 24px 40px;background:linear-gradient(180deg,rgba(11,9,7,.8),transparent)}}
 
 /* page transition: five strips sweep up, then away */
 .curtain{position:fixed;inset:0;z-index:10;display:flex;pointer-events:none}
@@ -161,7 +178,10 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
   <img class="art-img" src="stanczyk.webp" alt="Stanczyk, oil painting by Jan Matejko, 1862" width="2200" height="1635">
   <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Skills</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
 </section>
-<section class="page" id="projects"><a class="back" href="#">&larr; Back</a><h2>Projects</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
+<section class="page fog" id="projects">
+  <div class="frame"><img src="wanderer.webp" alt="Wanderer above the Sea of Fog, oil painting by Caspar David Friedrich, c. 1818" width="2012" height="2576"></div>
+  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Projects</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
+</section>
 <section class="page" id="certs"><a class="back" href="#">&larr; Back</a><h2>Certifications</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
 <section class="page" id="contact"><a class="back" href="#">&larr; Back</a><h2>Contact</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
 
@@ -276,6 +296,24 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
       setTimeout(done, 3400);
     }, 2150);
   }
+  /* Projects: the camera dives into the white cloak, melts into fog, then glides over the fog sea and pulls back to the wanderer */
+  function toProjects(){
+    busy = true;
+    var st = document.querySelector('.stage').getBoundingClientRect();
+    var ox = (st.left + st.width*.68)/innerWidth*100, oy = (st.top + st.height*.58)/innerHeight*100;
+    heroEl.style.transformOrigin = ox.toFixed(1)+'% '+oy.toFixed(1)+'%';
+    heroEl.classList.add('zoomcloak');
+    veil.style.background = '#c9d1d9';
+    veil.style.transition = 'opacity .9s ease-in 1.1s';
+    veil.style.opacity = 1;
+    setTimeout(function(){
+      show('projects');
+      heroEl.classList.remove('zoomcloak');
+      veil.style.transition = 'opacity 1.4s ease .15s';
+      veil.style.opacity = 0;
+      setTimeout(done, 5700);
+    }, 2150);
+  }
   function fadeTo(name){
     busy = true;
     veil.style.background = '#000';
@@ -292,7 +330,8 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
     if(instant || reduce){ show(name); return; }
     if(name === 'about' && current === ''){ toAbout(); return; }
     if(name === 'skills' && current === ''){ toSkills(); return; }
-    if(current === 'about' || current === 'skills'){ fadeTo(name); return; }
+    if(name === 'projects' && current === ''){ toProjects(); return; }
+    if(current === 'about' || current === 'skills' || current === 'projects'){ fadeTo(name); return; }
     busy = true;
     curtain.classList.add('in');
     setTimeout(function(){
