@@ -79,9 +79,22 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 .page.art .art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:72% center;transform-origin:63% 46%}
 .page.art.open .art-img{animation:pull 2.8s cubic-bezier(.15,.6,.2,1) both}
 @keyframes pull{from{opacity:0;transform:scale(2.6)}30%{opacity:1}to{opacity:1;transform:none}}
-.page.art .txt{position:relative;z-index:1;padding:110px clamp(24px,6vw,90px) 60px}
+.page.art .txt,.page.grav .txt{position:relative;z-index:1;padding:110px clamp(24px,6vw,90px) 60px}
 .page.art.open h2{animation-delay:2s}.page.art.open .rule{animation-delay:2.15s}.page.art.open .soon{animation-delay:2.3s}
 @media(max-aspect-ratio:9/16){.page.art .art-img{object-position:center;transform-origin:45% 46%}}
+
+/* Skills: the home screen trembles, then falls away and reveals Newton */
+.page.grav{background:#0b0907;padding:0}
+.page.behind{z-index:3}
+.page.grav .art-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:80% center;transform-origin:80% 30%;animation:drift 40s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1)}to{transform:scale(1.07)}}
+.page.grav.open h2{animation-delay:1.6s}.page.grav.open .rule{animation-delay:1.75s}.page.grav.open .soon{animation-delay:1.9s}
+#hero.shake{z-index:4;animation:shake .6s linear}
+@keyframes shake{0%,100%{transform:none}10%{transform:translate(-3px,2px) rotate(-.2deg)}20%{transform:translate(4px,-2px) rotate(.25deg)}30%{transform:translate(-4px,3px)}40%{transform:translate(3px,-3px) rotate(-.2deg)}50%{transform:translate(-3px,1px)}60%{transform:translate(4px,2px) rotate(.2deg)}70%{transform:translate(-2px,-2px)}80%{transform:translate(2px,2px)}90%{transform:translate(-1px,0)}}
+#hero.fall{z-index:4;transform:translateY(112vh) rotate(2.5deg);transform-origin:20% 100%;transition:transform 1.1s cubic-bezier(.55,0,1,.45)}
+@media(max-aspect-ratio:1/1){
+.page.grav .art-img{object-position:85% center}
+.page.grav .txt{position:absolute;left:0;right:0;bottom:0;padding:90px 24px 40px;background:linear-gradient(0deg,#0b0907 35%,transparent)}}
 
 /* page transition: five strips sweep up, then away */
 .curtain{position:fixed;inset:0;z-index:10;display:flex;pointer-events:none}
@@ -142,7 +155,10 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
   <img class="art-img" src="bocklin.webp" alt="Self-Portrait with Death Playing the Fiddle, oil painting by Arnold Bocklin" width="1440" height="2560">
   <div class="txt"><a class="back" href="#">&larr; Back</a><h2>About</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
 </section>
-<section class="page" id="skills"><a class="back" href="#">&larr; Back</a><h2>Skills</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
+<section class="page grav" id="skills">
+  <img class="art-img" src="newton.webp" alt="Portrait of Isaac Newton, oil painting after Godfrey Kneller" width="1920" height="1104">
+  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Skills</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
+</section>
 <section class="page" id="projects"><a class="back" href="#">&larr; Back</a><h2>Projects</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
 <section class="page" id="certs"><a class="back" href="#">&larr; Back</a><h2>Certifications</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
 <section class="page" id="contact"><a class="back" href="#">&larr; Back</a><h2>Contact</h2><div class="rule"></div><p class="soon">Content coming soon.</p></section>
@@ -239,6 +255,25 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
       setTimeout(done, 3000);
     }, 1600);
   }
+  /* Skills: gravity. The home screen shakes, lets go and falls, and the page underneath is revealed */
+  function toSkills(){
+    busy = true;
+    var pg = document.getElementById('skills'), root = document.documentElement;
+    root.style.overflow = 'hidden';
+    pg.classList.add('behind');
+    heroEl.classList.add('shake');
+    show('skills');
+    setTimeout(function(){
+      heroEl.classList.remove('shake');
+      heroEl.classList.add('fall');
+    }, 600);
+    setTimeout(function(){
+      pg.classList.remove('behind');
+      heroEl.classList.remove('fall');
+      root.style.overflow = '';
+      done();
+    }, 1800);
+  }
   function fadeTo(name){
     busy = true;
     veil.style.transition = 'opacity .6s ease';
@@ -253,7 +288,8 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
     if(name === current || busy) return;
     if(instant || reduce){ show(name); return; }
     if(name === 'about' && current === ''){ toAbout(); return; }
-    if(current === 'about'){ fadeTo(name); return; }
+    if(name === 'skills' && current === ''){ toSkills(); return; }
+    if(current === 'about' || current === 'skills'){ fadeTo(name); return; }
     busy = true;
     curtain.classList.add('in');
     setTimeout(function(){
