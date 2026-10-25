@@ -100,7 +100,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 
 /* Projects: dive into the white cloak, then drift over the fog toward the mountain and pull back to the wanderer */
 .page.fog{background:radial-gradient(ellipse at 80% 40%,#1a1f26,#0b0907 70%);padding:0}
-.page.fog .frame{position:absolute;top:0;bottom:0;right:0;aspect-ratio:2012/2576;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 24%);mask-image:linear-gradient(90deg,transparent,#000 24%)}
+.page.fog .frame{position:fixed;top:0;bottom:0;right:0;aspect-ratio:2012/2576;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 24%);mask-image:linear-gradient(90deg,transparent,#000 24%)}
 .page.fog .frame img{position:absolute;inset:0;width:100%;height:100%;display:block}
 .page.fog.open .frame img{animation:glide 5.6s both,fogdrift 40s ease-in-out 5.6s infinite alternate}
 @keyframes glide{
@@ -175,7 +175,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 .sgroup li{font-family:var(--mono);font-size:13px;line-height:1.2;padding:7px 12px;border:1px solid rgba(243,233,210,.24);background:rgba(11,9,7,.45);backdrop-filter:blur(3px);transition:color .2s,border-color .2s,transform .25s}
 .sgroup li:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
 .page.grav.open .sgroup{animation:up .8s cubic-bezier(.2,.7,.2,1) both}
-.page.grav.open .sgroup:nth-of-type(2){animation-delay:3.1s}.page.grav.open .sgroup:nth-of-type(3){animation-delay:3.22s}.page.grav.open .sgroup:nth-of-type(4){animation-delay:3.34s}.page.grav.open .sgroup:nth-of-type(5){animation-delay:3.46s}.page.grav.open .sgroup:nth-of-type(6){animation-delay:3.58s}.page.grav.open .sgroup:nth-of-type(7){animation-delay:3.7s}.page.grav.open .sgroup:nth-of-type(8){animation-delay:3.82s}
+.page.grav.open .sgroup:nth-of-type(2){animation-delay:3.1s}.page.grav.open .sgroup:nth-of-type(3){animation-delay:3.22s}.page.grav.open .sgroup:nth-of-type(4){animation-delay:3.34s}.page.grav.open .sgroup:nth-of-type(5){animation-delay:3.46s}.page.grav.open .sgroup:nth-of-type(6){animation-delay:3.58s}.page.grav.open .sgroup:nth-of-type(7){animation-delay:3.7s}.page.grav.open .sgroup:nth-of-type(8){animation-delay:3.82s}.page.grav.open .sgroup:nth-of-type(9){animation-delay:3.94s}
 @media(max-aspect-ratio:1/1){
 .page.grav .art-img{opacity:.3}
 .page.grav .txt{position:relative;left:auto;right:auto;bottom:auto;padding:90px 24px 40px;background:none}}
@@ -185,6 +185,28 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 .page.art.open .bio{animation:up .9s cubic-bezier(.2,.7,.2,1) 2.8s both}
 .page.art .bio{text-shadow:0 1px 14px rgba(0,0,0,.7)}
 @media(max-aspect-ratio:1/1){.page.art .bio{background:rgba(8,6,4,.62);padding:18px 16px 6px}}
+
+/* projects content */
+.page.fog::after{content:'';position:fixed;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(11,9,7,.85),rgba(11,9,7,.4) 40%,transparent 62%)}
+.page.fog .txt{z-index:2;max-width:760px}
+.pgroup{margin-top:34px}
+.pgroup h3{margin:0 0 4px}
+.pgroup .note{font-family:var(--mono);font-size:12px;opacity:.55;margin-bottom:6px}
+.pgroup ul{list-style:none}
+.pgroup li{border-bottom:1px solid rgba(243,233,210,.14)}
+.pgroup li:first-child{border-top:1px solid rgba(243,233,210,.14);margin-top:12px}
+.prow{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:6px 20px;padding:16px 4px;color:var(--paper);text-decoration:none;transition:color .25s,padding .3s}
+a.prow:hover,a.prow:focus-visible{color:var(--gold);padding-left:14px;outline:none}
+.prow .nm{font-family:var(--display);font-weight:800;font-size:1.08rem;letter-spacing:-.01em}
+.prow .go{font-family:var(--mono);font-size:12px;opacity:.55}
+.prow .ds{grid-column:1/-1;font-size:.92rem;line-height:1.45;opacity:.78;max-width:62ch}
+.prow .tg{grid-column:1/-1;font-family:var(--mono);font-size:12px;color:var(--gold);opacity:.85}
+.page.fog.open .pgroup{animation:up .8s cubic-bezier(.2,.7,.2,1) both}
+.page.fog.open .pgroup:nth-of-type(2){animation-delay:4.9s}.page.fog.open .pgroup:nth-of-type(3){animation-delay:5.05s}.page.fog.open .pgroup:nth-of-type(4){animation-delay:5.2s}.page.fog.open .pgroup:nth-of-type(5){animation-delay:5.35s}
+@media(max-aspect-ratio:1/1){
+.page.fog .frame{opacity:.3}
+.page.fog::after{background:none}
+.page.fog .txt{position:relative;left:auto;right:auto;top:auto;padding:90px 24px 40px;background:none}}
 
 /* page transition: five strips sweep up, then away */
 .curtain{position:fixed;inset:0;z-index:10;display:flex;pointer-events:none}
@@ -262,6 +284,7 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 <div class="sgroup"><h3>Engineering</h3><ul><li>Thermal Engineering</li><li>Turbine Engineering</li><li>Heat Transfer</li><li>Thermodynamics</li><li>Nuclear Engineering</li><li>Mechanical Systems</li><li>CFD Analysis</li><li>Two-Phase Flow</li><li>Conjugate Heat Transfer</li></ul></div>
 <div class="sgroup"><h3>CAD and Design</h3><ul><li>Siemens NX</li><li>SolidWorks</li><li>CATIA</li><li>AutoCAD (3D Modeling)</li><li>Blender</li><li>Rhino3D (7-8)</li><li>CADDS 5</li><li>MotionSolve</li></ul></div>
 <div class="sgroup"><h3>Simulation and Analysis</h3><ul><li>ANSYS Fluent</li><li>ANSYS Mechanical</li><li>Abaqus</li><li>COMSOL Multiphysics</li><li>Siemens STAR-CCM+</li><li>MATLAB</li><li>Simulink</li><li>OpenRocket</li><li>Lattice Boltzmann Method (LBM)</li><li>LES Turbulence Modeling</li><li>Method of Characteristics</li><li>Vortex Lattice Method (VLM)</li><li>Joukowski Transform</li><li>k-epsilon Turbulence</li></ul></div>
+<div class="sgroup"><h3>Control and Flight Dynamics</h3><ul><li>6-DoF Flight Dynamics</li><li>PID Control</li><li>LQR/LQI Control</li><li>Extended Kalman Filter (EKF)</li></ul></div>
 <div class="sgroup"><h3>Programming</h3><ul><li>Python</li><li>C++</li><li>JavaScript</li><li>TypeScript</li><li>HTML/CSS</li><li>React</li><li>Node.js</li><li>VBA</li></ul></div>
 <div class="sgroup"><h3>3D and Visualization</h3><ul><li>Three.js</li><li>OpenGL</li><li>Recharts</li><li>Blender</li><li>Rhino3D</li></ul></div>
 <div class="sgroup"><h3>Electronics and OS</h3><ul><li>EasyEDA</li><li>Ubuntu</li></ul></div>
@@ -270,7 +293,33 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 </section>
 <section class="page fog" id="projects">
   <div class="frame"><img src="wanderer.webp" alt="Wanderer above the Sea of Fog, oil painting by Caspar David Friedrich, c. 1818" width="2012" height="2576"></div>
-  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Projects</h2><div class="rule"></div><p class="soon">Content coming soon.</p></div>
+  <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Projects</h2><div class="rule"></div>
+<div class="pgroup"><h3>Aerospace and Flight</h3><ul>
+<li><a class="prow" href="https://github.com/SirPicklee/uav-6dof-autopilot" target="_blank" rel="noopener"><span class="nm">UAV 6-DoF Autopilot</span><span class="go">GitHub</span><span class="ds">Fixed-wing UAV simulator with PID/LQI autopilot, L1 waypoint guidance, EKF sensor fusion and CI-verified tests.</span><span class="tg">Python</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/regenerative-cooling-simulator" target="_blank" rel="noopener"><span class="nm">Regenerative Cooling Simulator</span><span class="go">GitHub</span><span class="ds">Rocket engine regenerative cooling simulator with 18 physics modules and Raptor 2, Merlin 1D and RS-25 presets.</span><span class="tg">JavaScript, React, Three.js, Recharts</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/aircraft-nozzle-interactive" target="_blank" rel="noopener"><span class="nm">Aircraft Nozzle Interactive</span><span class="go">GitHub</span><span class="ds">Rocket nozzle design suite using the Method of Characteristics.</span><span class="tg">Python</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/aero-sim" target="_blank" rel="noopener"><span class="nm">Aero-Sim</span><span class="go">GitHub</span><span class="ds">Browser-based wing simulation with Joukowski theory, VLM, aeroelastics, sonic boom and dynamic stability.</span><span class="tg">JavaScript</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/orbital-mechanics" target="_blank" rel="noopener"><span class="nm">Orbital Mechanics</span><span class="go">GitHub</span><span class="ds">Interactive 3D orbital mechanics simulator with Hohmann transfers, Lagrange points and real-time physics.</span><span class="tg">TypeScript, Three.js</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/kite-simulator" target="_blank" rel="noopener"><span class="nm">Kite Simulator</span><span class="go">GitHub</span><span class="ds">Full physics kite design and simulation tool.</span><span class="tg">HTML</span></a></li>
+</ul></div>
+<div class="pgroup"><h3>F1 and Thermal</h3><ul>
+<li><a class="prow" href="https://github.com/SirPicklee/f1-cfd-simulator" target="_blank" rel="noopener"><span class="nm">F1 CFD Simulator</span><span class="go">GitHub</span><span class="ds">Real-time 2D CFD simulator for F1 aerodynamics, using a D2Q9 Lattice Boltzmann Method with MRT collision and Smagorinsky LES turbulence.</span><span class="tg">Python</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/f1-drs-analysis" target="_blank" rel="noopener"><span class="nm">F1 DRS Analysis</span><span class="go">GitHub</span><span class="ds">Multi-physics simulation of the Formula 1 Drag Reduction System.</span><span class="tg">Python</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/f1-brake-thermal-analysis" target="_blank" rel="noopener"><span class="nm">F1 Brake Thermal Analysis</span><span class="go">GitHub</span><span class="ds">Thermal simulation platform for F1 brake discs.</span><span class="tg">Python</span></a></li>
+</ul></div>
+<div class="pgroup"><h3>Nuclear, Physics and 3D</h3><ul>
+<li><a class="prow" href="https://github.com/SirPicklee/advanced-tokamak-simulator" target="_blank" rel="noopener"><span class="nm">Tokamak Simulator</span><span class="go">GitHub</span><span class="ds">Interactive 3D tokamak fusion reactor simulator with plasma physics, MHD modes and real-time diagnostics.</span><span class="tg">HTML, JavaScript</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/nuclear-turbine-3d" target="_blank" rel="noopener"><span class="nm">Nuclear Turbine 3D</span><span class="go">GitHub</span><span class="ds">Interactive 3D visualization of a nuclear power plant steam turbine train.</span><span class="tg">JavaScript</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/Helium" target="_blank" rel="noopener"><span class="nm">Helium Atom Simulator</span><span class="go">GitHub</span><span class="ds">Real-time helium atom simulator with a 2D Bohr model and 3D quantum orbital visualization.</span><span class="tg">C++, OpenGL</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/geo-explorer-3d" target="_blank" rel="noopener"><span class="nm">Geo Explorer 3D</span><span class="go">GitHub</span><span class="ds">Interactive 3D globe for exploring volcanoes and tsunamis.</span><span class="tg">HTML</span></a></li>
+</ul></div>
+<div class="pgroup"><h3>Engineering Design</h3><p class="note">Private projects, no public repository.</p><ul>
+<li><div class="prow"><span class="nm">Automotive Brake Disc</span><span class="go">Private</span><span class="ds">Thermal durability analysis and geometry optimization under high-cycle thermal loading.</span><span class="tg">SolidWorks, ANSYS</span></div></li>
+<li><div class="prow"><span class="nm">NPP Core Design</span><span class="go">Private</span><span class="ds">Nuclear power plant core design and neutronics analysis.</span><span class="tg">MATLAB</span></div></li>
+<li><div class="prow"><span class="nm">Concept Drone Design</span><span class="go">Private</span><span class="ds">Drone design with CAD modeling and flight simulation.</span><span class="tg">SolidWorks, CATIA</span></div></li>
+<li><div class="prow"><span class="nm">DIY Torpedo</span><span class="go">Private</span><span class="ds">Mechanical design and structural analysis of a torpedo.</span><span class="tg">SolidWorks, ANSYS</span></div></li>
+</ul></div>
+</div>
 </section>
 <section class="page lib" id="certs">
   <div class="frame"><img src="bookworm.webp" alt="The Bookworm, oil painting by Carl Spitzweg, c. 1850" width="549" height="1000"></div>
