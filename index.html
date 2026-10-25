@@ -180,6 +180,12 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
 .page.grav .art-img{opacity:.3}
 .page.grav .txt{position:relative;left:auto;right:auto;bottom:auto;padding:90px 24px 40px;background:none}}
 
+.bio{margin-top:36px;max-width:60ch}
+.bio p{font-size:1.02rem;line-height:1.7;margin-bottom:1.1em;opacity:.92}
+.page.art.open .bio{animation:up .9s cubic-bezier(.2,.7,.2,1) 2.8s both}
+.page.art .bio{text-shadow:0 1px 14px rgba(0,0,0,.7)}
+@media(max-aspect-ratio:1/1){.page.art .bio{background:rgba(8,6,4,.62);padding:18px 16px 6px}}
+
 /* page transition: five strips sweep up, then away */
 .curtain{position:fixed;inset:0;z-index:10;display:flex;pointer-events:none}
 .curtain i{flex:1;background:#0b0907;border-top:2px solid var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform .55s cubic-bezier(.7,0,.2,1);transition-delay:calc(var(--i)*70ms)}
@@ -240,10 +246,15 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,6.4rem);l
   <div class="txt"><a class="back" href="#">&larr; Back</a><h2>About</h2><div class="rule"></div>
     <div class="langs"><h3>Languages</h3><ul>
       <li><span class="n">English</span><span class="l">C1, professional</span><i style="--w:85%"></i></li>
-      <li><span class="n">Turkish</span><span class="l">Native</span><i style="--w:100%"></i></li>
+      <li><span class="n">Mandarin Chinese</span><span class="l">A2, HSK3-HSK4</span><i style="--w:25%"></i></li>
       <li><span class="n">Russian</span><span class="l">B1, intermediate</span><i style="--w:55%"></i></li>
-      <li><span class="n">Mandarin Chinese</span><span class="l">A2, HSK1 to HSK4</span><i style="--w:25%"></i></li>
-    </ul></div></div>
+      <li><span class="n">Turkish</span><span class="l">Native</span><i style="--w:100%"></i></li>
+    </ul></div>
+    <div class="bio">
+      <p>I am a thermal and mechanical systems engineer with a background in Nuclear Energy Engineering. I have hands-on experience in thermal systems, turbine engineering, mechanical design and data analysis. My work spans energy production, aerospace propulsion, automotive design and nuclear technology.</p>
+      <p>At TSM Enerji, I worked as a Senior Specialist Analytical Engineer, preparing technical projects, producing and validating analytical data reports, and building workflow automation with VBA. At CMD, as a Mechanical Design Engineer, I reviewed technical drawings and worked on propulsion system design, assembly and tolerance analysis. During my internship at EUAS and Mitsubishi Heavy Industry, I worked on steam turbine, nozzle, condenser and gas turbine calculations. At TENMAK, my internship focused on nuclear medicine applications and gamma ray dose measurement.</p>
+      <p>Outside of work, I build open-source engineering simulations, from a CFD simulator for F1 aerodynamics to a tokamak fusion reactor visualizer. I believe complex physics should be interactive and accessible to everyone.</p>
+    </div></div>
 </section>
 <section class="page grav" id="skills">
   <img class="art-img" src="stanczyk.webp" alt="Stanczyk, oil painting by Jan Matejko, 1862" width="2200" height="1635">
