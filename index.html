@@ -204,7 +204,7 @@ a.prow:hover .nm::before,a.prow:focus-visible .nm::before{transform:translateX(5
 .prow .ds{grid-column:1/-1;font-size:.92rem;line-height:1.45;opacity:.78;max-width:62ch}
 .prow .tg{grid-column:1/-1;font-family:var(--mono);font-size:12px;color:var(--gold);opacity:.85}
 .page.fog.open .pgroup{animation:up .8s cubic-bezier(.2,.7,.2,1) both}
-.page.fog.open .pgroup:nth-of-type(2){animation-delay:4.9s}.page.fog.open .pgroup:nth-of-type(3){animation-delay:5.05s}.page.fog.open .pgroup:nth-of-type(4){animation-delay:5.2s}.page.fog.open .pgroup:nth-of-type(5){animation-delay:5.35s}
+.page.fog.open .pgroup:nth-of-type(2){animation-delay:4.9s}.page.fog.open .pgroup:nth-of-type(3){animation-delay:5.05s}.page.fog.open .pgroup:nth-of-type(4){animation-delay:5.2s}.page.fog.open .pgroup:nth-of-type(5){animation-delay:5.35s}.page.fog.open .pgroup:nth-of-type(6){animation-delay:5.5s}
 @media(max-aspect-ratio:1/1){
 .page.fog .frame{opacity:.3}
 .page.fog::after{background:none}
@@ -285,7 +285,7 @@ a.prow:hover .nm::before,a.prow:focus-visible .nm::before{transform:translateX(5
   <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Skills</h2><div class="rule"></div>
 <div class="sgroup"><h3>Engineering</h3><ul><li>Thermal Engineering</li><li>Turbine Engineering</li><li>Heat Transfer</li><li>Thermodynamics</li><li>Nuclear Engineering</li><li>Mechanical Systems</li><li>CFD Analysis</li><li>Two-Phase Flow</li><li>Conjugate Heat Transfer</li></ul></div>
 <div class="sgroup"><h3>CAD and Design</h3><ul><li>Siemens NX</li><li>SolidWorks</li><li>CATIA</li><li>AutoCAD (3D Modeling)</li><li>Blender</li><li>Rhino3D (7-8)</li><li>CADDS 5</li><li>MotionSolve</li></ul></div>
-<div class="sgroup"><h3>Simulation and Analysis</h3><ul><li>ANSYS Fluent</li><li>ANSYS Mechanical</li><li>Abaqus</li><li>COMSOL Multiphysics</li><li>Siemens STAR-CCM+</li><li>MATLAB</li><li>Simulink</li><li>OpenRocket</li><li>Lattice Boltzmann Method (LBM)</li><li>LES Turbulence Modeling</li><li>Method of Characteristics</li><li>Vortex Lattice Method (VLM)</li><li>Joukowski Transform</li><li>k-epsilon Turbulence</li></ul></div>
+<div class="sgroup"><h3>Simulation and Analysis</h3><ul><li>ANSYS Fluent</li><li>ANSYS Mechanical</li><li>Abaqus</li><li>COMSOL Multiphysics</li><li>Siemens STAR-CCM+</li><li>SU2</li><li>MATLAB</li><li>Simulink</li><li>OpenRocket</li><li>Lattice Boltzmann Method (LBM)</li><li>LES Turbulence Modeling</li><li>Method of Characteristics</li><li>Vortex Lattice Method (VLM)</li><li>Joukowski Transform</li><li>k-epsilon Turbulence</li></ul></div>
 <div class="sgroup"><h3>Control and Flight Dynamics</h3><ul><li>6-DoF Flight Dynamics</li><li>PID Control</li><li>LQR/LQI Control</li><li>Extended Kalman Filter (EKF)</li></ul></div>
 <div class="sgroup"><h3>Programming</h3><ul><li>Python</li><li>C++</li><li>JavaScript</li><li>TypeScript</li><li>HTML/CSS</li><li>React</li><li>Node.js</li><li>VBA</li></ul></div>
 <div class="sgroup"><h3>3D and Visualization</h3><ul><li>Three.js</li><li>OpenGL</li><li>ParaView</li><li>Recharts</li><li>Blender</li><li>Rhino3D</li></ul></div>
@@ -297,12 +297,17 @@ a.prow:hover .nm::before,a.prow:focus-visible .nm::before{transform:translateX(5
   <div class="frame"><img src="wanderer.webp" alt="Wanderer above the Sea of Fog, oil painting by Caspar David Friedrich, c. 1818" width="2012" height="2576"></div>
   <div class="txt"><a class="back" href="#">&larr; Back</a><h2>Projects</h2><div class="rule"></div>
 <div class="pgroup"><h3>Aerospace and Flight</h3><ul>
+<li><a class="prow" href="https://github.com/SirPicklee/f16-flight-dynamics" target="_blank" rel="noopener"><span class="nm">F-16 Flight Dynamics</span><span class="go">GitHub</span><span class="ds">Nonlinear 6-DoF F-16 flight dynamics model with trim, linearization, modal analysis, SAS design and validation against Stevens and Lewis.</span><span class="tg">Python</span></a></li>
 <li><a class="prow" href="https://github.com/SirPicklee/uav-6dof-autopilot" target="_blank" rel="noopener"><span class="nm">UAV 6-DoF Autopilot</span><span class="go">GitHub</span><span class="ds">Fixed-wing UAV simulator with PID/LQI autopilot, L1 waypoint guidance, EKF sensor fusion and CI-verified tests.</span><span class="tg">Python</span></a></li>
 <li><a class="prow" href="https://github.com/SirPicklee/regenerative-cooling-simulator" target="_blank" rel="noopener"><span class="nm">Regenerative Cooling Simulator</span><span class="go">GitHub</span><span class="ds">Rocket engine regenerative cooling simulator with 18 physics modules and Raptor 2, Merlin 1D and RS-25 presets.</span><span class="tg">JavaScript, React, Three.js, Recharts</span></a></li>
 <li><a class="prow" href="https://github.com/SirPicklee/aircraft-nozzle-interactive" target="_blank" rel="noopener"><span class="nm">Aircraft Nozzle Interactive</span><span class="go">GitHub</span><span class="ds">Rocket nozzle design suite using the Method of Characteristics.</span><span class="tg">Python</span></a></li>
 <li><a class="prow" href="https://github.com/SirPicklee/aero-sim" target="_blank" rel="noopener"><span class="nm">Aero-Sim</span><span class="go">GitHub</span><span class="ds">Browser-based wing simulation with Joukowski theory, VLM, aeroelastics, sonic boom and dynamic stability.</span><span class="tg">JavaScript</span></a></li>
 <li><a class="prow" href="https://github.com/SirPicklee/orbital-mechanics" target="_blank" rel="noopener"><span class="nm">Orbital Mechanics</span><span class="go">GitHub</span><span class="ds">Interactive 3D orbital mechanics simulator with Hohmann transfers, Lagrange points and real-time physics.</span><span class="tg">TypeScript, Three.js</span></a></li>
 <li><a class="prow" href="https://github.com/SirPicklee/kite-simulator" target="_blank" rel="noopener"><span class="nm">Kite Simulator</span><span class="go">GitHub</span><span class="ds">Full physics kite design and simulation tool.</span><span class="tg">HTML</span></a></li>
+</ul></div>
+<div class="pgroup"><h3>Turbomachinery</h3><ul>
+<li><a class="prow" href="https://github.com/SirPicklee/rotor67-cfd" target="_blank" rel="noopener"><span class="nm">Rotor 67 CFD</span><span class="go">GitHub</span><span class="ds">NASA Rotor 67 transonic fan: 3D RANS CFD with SU2 and a Python structured H-grid.</span><span class="tg">Python, SU2</span></a></li>
+<li><a class="prow" href="https://github.com/SirPicklee/transonic-fan" target="_blank" rel="noopener"><span class="nm">Transonic Fan</span><span class="go">GitHub</span><span class="ds">Transonic fan aerodynamic design toolkit with meanline design, loss models, CFD validation against NASA Rotor 67 and flutter screening.</span><span class="tg">Python</span></a></li>
 </ul></div>
 <div class="pgroup"><h3>F1 and Thermal</h3><ul>
 <li><a class="prow" href="https://github.com/SirPicklee/f1-cfd-simulator" target="_blank" rel="noopener"><span class="nm">F1 CFD Simulator</span><span class="go">GitHub</span><span class="ds">Real-time 2D CFD simulator for F1 aerodynamics, using a D2Q9 Lattice Boltzmann Method with MRT collision and Smagorinsky LES turbulence.</span><span class="tg">Python</span></a></li>
